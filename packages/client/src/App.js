@@ -143,8 +143,6 @@ const App = () => {
           contractABI,
           signer
         );
-        let count = await wavePortalContract.getTotalWaves();
-        console.log("Retrieved total wave count...", count.toNumber());
         let contractBalance = await provider.getBalance(wavePortalContract.address);
         console.log("Contract balance:", ethers.utils.formatEther(contractBalance));
         /* write 👋（wave）in the smart contract */
@@ -154,9 +152,6 @@ const App = () => {
         console.log("Mining...", waveTxn.hash);
         await waveTxn.wait();
         console.log("Mined -- ", waveTxn.hash);
-        count = await wavePortalContract.getTotalWaves();
-        console.log("Retrieved total wave count...", count.toNumber());
-        // let contractBalance = await provider.getBalance(wavePortalContract.address);
         let contractBalance_post = await provider.getBalance(
           wavePortalContract.address
         );
