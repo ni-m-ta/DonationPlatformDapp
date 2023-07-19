@@ -9,5 +9,11 @@
     ]
   },
   "scripts": {
+    "contract": "yarn workspace contract",
+    "client": "yarn workspace client",
+    "prettier": "prettier --ignore-unknown --no-error-on-unmatched-pattern --ignore-path .prettierignore --write .",
+    "prettier:check": "prettier --ignore-unknown --no-error-on-unmatched-pattern --ignore-path .prettierignore --check .",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix ."
   }
 }
