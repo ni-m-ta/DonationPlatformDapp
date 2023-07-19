@@ -1,6 +1,6 @@
 const main = async () => {
     const [owner, user1] = await hre.ethers.getSigners();
-    const compiledContract = await hre.ethers.getContractFactoru("DonationPlatformContract");
+    const compiledContract = await hre.ethers.getContractFactory("DonationPlatformContract");
     const deployedContract = await compiledContract.deploy();
     const afterDeployedContract = await deployedContract.deployed();
 
@@ -10,10 +10,10 @@ const main = async () => {
 const runMain = async () => {
     try {
         await main();
-        process.exitCode(0);
+        process.exit(0);
     } catch (error) {
         console.log(error);
-        process.exitCode(1);
+        process.exit(1);
     }
 }
 
