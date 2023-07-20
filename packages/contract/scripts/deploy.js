@@ -8,7 +8,12 @@ const main = async () => {
   const [deployer] = await hre.ethers.getSigners();
   const accountBalance = await deployer.getBalance();
   const compiledContract = await hre.ethers.getContractFactory("DonationPlatformContract");
-  const deployedContract = await compiledContract.deploy();
+
+  const deploymentValue = hre.ethers.utils.parseEther("0.001");
+  const deployedContract = await compiledContract.deploy({
+    value: deploymentValue
+  });
+
   const afterDeployedContract = await deployedContract.deployed();
 
   console.log("Deploying contracts with account: ", deployer.address);
