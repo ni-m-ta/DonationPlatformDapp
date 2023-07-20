@@ -52,7 +52,7 @@ function withdrawETH(amount) {
   } catch (error) {
     console.log(error)
   }
-}
+};
 
 function checkIfWalletIsConnected() {
   try {
@@ -62,13 +62,21 @@ function checkIfWalletIsConnected() {
     } else {
       console.log("We have the ethereum object", ethereum);
     }
-    const accounts = ethereum.request({ method: "eth_accounts" });
-    if (accounts.length !== 0) {
-      const account = accounts[0];
-      console.log("Found an authorized account:", account);
-    } else {
-      console.log("No authorized account found");
-    }
+    ethereum.request({ method: "eth_accounts" })
+      .then((accounts) =>{
+        if (accounts.length !== 0) {
+          console.log("Address", accounts);
+          connectButton.style.display = "none";
+          connectedNotification.style.display = "block";
+        } else {
+          console.log("No account found");
+          connectButton.style.display = "block";
+          connectedNotification.style.display = "none";
+        }
+      })
+      .catch((error) => {
+        console.log("Error", error);
+      })
   } catch (error) {
     console.log(error);
   }
@@ -81,14 +89,18 @@ function connectWallet() {
       alert("Get MetaMask!");
       return;
     } 
-    const accounts = ethereum.request({ method: "eth_requestAccounts" });
-    console.log("Connected: ", accounts[0]);
+    const accounts = ethereum.request({ method: "eth_requestAccounts" })
+      .then(() => {
+        console.log("Connected: ", accounts[0]);
+      })
+      .catch(() => {
+        console.log("You denied the connection to your account");
+      })
   } catch (error) {
     console.log(error);
   }
 };
 
-console.log("test")
 document.addEventListener('DOMContentLoaded', checkIfWalletIsConnected);
 const toWallet = document.getElementById("connectWallet");
 toWallet.addEventListener("click", function() {
