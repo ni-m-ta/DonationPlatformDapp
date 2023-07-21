@@ -8,7 +8,7 @@ contract DonationPlatformContract{
     address public owner;
 
     event ReceivedETH(address indexed sender, uint256 amount);
-    event WithdrawnETH(address indexed rreceiver, uint256 amount);
+    event WithdrawnETH(address indexed receiver, uint256 amount);
 
     constructor() payable {
         console.log("Constructor has been executed");
