@@ -9,7 +9,7 @@ const main = async () => {
   const accountBalance = await deployer.getBalance();
   const compiledContract = await hre.ethers.getContractFactory("DonationPlatformContract");
 
-  const deploymentValue = hre.ethers.utils.parseEther("0.001");
+  const deploymentValue = hre.ethers.utils.parseEther("0.5");
   const deployedContract = await compiledContract.deploy({
     value: deploymentValue,
   });
