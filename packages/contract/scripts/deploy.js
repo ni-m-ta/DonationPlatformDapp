@@ -11,7 +11,7 @@ const main = async () => {
 
   const deploymentValue = hre.ethers.utils.parseEther("0.001");
   const deployedContract = await compiledContract.deploy({
-    value: deploymentValue
+    value: deploymentValue,
   });
 
   const afterDeployedContract = await deployedContract.deployed();
